@@ -79,7 +79,9 @@ module.exports = {
 			let infoProduct = await ctx.call('helper.getProduct', { priceProduct })
 
 			return infoProduct;
-		}
+		},
+
+		
 	},
 
 	/**

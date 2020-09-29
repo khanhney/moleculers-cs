@@ -67,6 +67,12 @@ module.exports ={
                 this.logger.info("Action handler");
                 return `Hello ${ctx.params.name}`;
             }
+        },
+
+        callTestBalancedEvent: {
+            handler(ctx) {
+                ctx.emit('order.created', { message: 'hello_world' })
+            }
         }
     },
 

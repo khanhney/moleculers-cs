@@ -213,7 +213,10 @@ module.exports = {
 	// Enable action & event parameter validation. More info: https://moleculer.services/docs/0.14/validating.html
 	validator: true, // default: Fastest
 
-	errorHandler: null,
+	errorHandler(err, info) { // ERROR HANDLER GLOGBAL
+        this.logger.warn("Log the error:", err);
+        throw err; // Throw further
+    },
 
 	// Enable/disable built-in metrics function. More info: https://moleculer.services/docs/0.14/metrics.html
 	metrics: {

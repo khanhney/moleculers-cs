@@ -28,5 +28,18 @@ module.exports = {
                 return `id: ${ctx.params.id} - name: ${ctx.params.name} - status: ${ctx.params.status}`
             }
         }
+    },
+
+    events: {
+        'send.mail': {
+            params: {
+                from: 'string|optional',
+                to: 'email',
+                subject: 'string'
+            },
+            handler(ctx) {
+                this.logger.info(`Event received, parameters OK`, ctx.params)
+            }
+        }
     }
 }

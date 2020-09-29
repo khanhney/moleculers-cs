@@ -243,16 +243,27 @@ module.exports = {
 		enabled: true,
 		// Available built-in exporters: "Console", "Datadog", "Event", "EventLegacy", "Jaeger", "Zipkin"
 		exporter: {
-			type: "Console", // Console exporter is only for development!
+			// type: "Console", // Console exporter is only for development!
+			type: "Jaeger", 
 			options: {
-				// Custom logger
-				logger: null,
-				// Using colors
-				colors: true,
-				// Width of row
-				width: 100,
-				// Gauge width in the row
-				gaugeWidth: 40
+				// // Custom logger
+				// logger: null,
+				// // Using colors
+				// colors: true,
+				// // Width of row
+				// width: 100,
+				// // Gauge width in the row
+				// gaugeWidth: 40
+
+				endpoint: null,
+				host: '127.0.0.1',
+				port: 6832,
+				sampler: {
+					type: 'Const',
+					options: {}
+				},
+				tracerOptions: {},
+				defaultTags: null
 			}
 		}
 	},

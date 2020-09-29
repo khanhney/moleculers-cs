@@ -78,9 +78,9 @@ module.exports = {
 	requestTimeout: 10 * 1000,
 
 	// Retry policy settings. More info: https://moleculer.services/docs/0.14/fault-tolerance.html#Retry
-	retryPolicy: {
+	retryPolicy: { // overriteable in each actions/services
 		// Enable feature
-		enabled: false,
+		enabled: true,
 		// Count of retries
 		retries: 5,
 		// First delay in milliseconds.
@@ -166,9 +166,18 @@ module.exports = {
 	},
 
 	// Settings of Circuit Breaker. More info: https://moleculer.services/docs/0.14/fault-tolerance.html#Circuit-Breaker
+	/**
+	 * Mô hình cầu giao ngắt mạch (Circuit breaker pattern): 
+	 * thống kê số yêu cầu thành công và không thành công. 
+	 * 		Khi số yêu cầu lỗi vượt quá ngưỡng đã định, 
+	 * 		ngắt cầu giao (circuit breaker) để tất cả yêu cầu sau đó bị hủy ngay lập tức. 
+	 * Nếu số yêu cầu bị lỗi vẫn tiếp tục tăng lên, 
+	 * sẽ có thông báo rằng dịch vụ không thể truy cập và việc gửi các yêu cầu là vô nghĩa. 
+	 * Sau 1 chu kì timeout, client có thể thử lại, nếu thành công, circuit breaker sẽ được đóng lại
+	 */
 	circuitBreaker: {
 		// Enable feature
-		enabled: false,
+		enabled: true,
 		// Threshold value. 0.5 means that 50% should be failed for tripping.
 		threshold: 0.5,
 		// Minimum request count. Below it, CB does not trip.
@@ -182,7 +191,9 @@ module.exports = {
 	},
 
 	// Settings of bulkhead feature. More info: https://moleculer.services/docs/0.14/fault-tolerance.html#Bulkhead
-	bulkhead: {
+	bulkhead: { // pattern (mẫu thiết kế các service cách ly hẳng nhau để khi một service bị lỗi sẽ không ảnh hưởng đến bất kì service nào khác)
+		//trả lại cached data hoặc giá trị mặc định (tập rỗng hoặc các khuyến cáo)
+
 		// Enable feature.
 		enabled: false,
 		// Maximum concurrent executions.

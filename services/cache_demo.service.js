@@ -1,7 +1,13 @@
+let CacheCleaner = require('../mixins/cache.cleaner.mixin');
+
 module.exports = {
     name: "cache",
     version: 'development',
 
+    mixins: [CacheCleaner([
+        'products',
+        'cache_demo'
+    ])],
     actions: {
         list: {
             cache: true,

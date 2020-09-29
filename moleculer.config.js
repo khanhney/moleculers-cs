@@ -68,10 +68,12 @@ module.exports = {
 	// Define a cacher.
 	// More info: https://moleculer.services/docs/0.14/caching.html
 	cacher: {
-		type: "Memory",
+		// type: "Redis",
+		type: "MemoryLRU",
 		options: {
 			maxParamsLength: 60,
-			ttl: 30 //30 seconds
+			ttl: 30, //30 seconds
+			max: 100 // theo thuật toán LRU
 		}
 	},
 
@@ -209,7 +211,7 @@ module.exports = {
 	},
 
 	// Enable action & event parameter validation. More info: https://moleculer.services/docs/0.14/validating.html
-	validator: true,
+	validator: true, // default: Fastest
 
 	errorHandler: null,
 

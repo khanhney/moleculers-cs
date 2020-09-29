@@ -122,9 +122,47 @@ module.exports = {
 	registry: {
 		// Define balancing strategy. More info: https://moleculer.services/docs/0.14/balancing.html
 		// Available values: "RoundRobin", "Random", "CpuUsage", "Latency", "Shard"
-		strategy: "RoundRobin",
+		strategy: "RoundRobin", //load-balancer
 		// Enable local action call preferring. Always call the local action instance if available.
-		preferLocal: true
+		// preferLocal: true,
+		// config discovery
+		dicoverer: {
+			type: "Redis",
+			options: {
+				redis: {
+					host: 'localhost',
+					port: 6379
+				},
+
+				serializer: 'JSON',
+				// Full heartbeat checks. It generates more network traffic
+                // 10 means every 10 cycle.
+                fullCheck: 10,
+
+                // Key scanning size
+                scanLength: 100,
+
+                // Monitoring Redis commands
+                monitor: true,
+                
+                // --- COMMON DISCOVERER OPTIONS ---
+
+                // Send heartbeat in every 10 seconds
+                heartbeatInterval: 10,
+
+                // Heartbeat timeout in seconds
+                heartbeatTimeout: 30,
+
+                // Disable heartbeat checking & sending, if true
+                disableHeartbeatChecks: false,
+
+                // Disable removing offline nodes from registry, if true
+                disableOfflineNodeRemoving: false,
+
+                // Remove offline nodes after 10 minutes
+                cleanOfflineNodesTimeout: 10 * 60
+			}
+		}
 	},
 
 	// Settings of Circuit Breaker. More info: https://moleculer.services/docs/0.14/fault-tolerance.html#Circuit-Breaker

@@ -38,7 +38,22 @@ module.exports = {
 		hello: {
 			rest: {
 				method: "GET",
-				path: "/hello"
+				path: "/hello/:name"
+			},
+			params: {
+				name: "string"
+			},
+			strategy: "Shard",
+			strategyOptions: { // not test
+				/**
+				 * Strategy options:
+				 * 	 shardKey: string
+				 * 	 vnodes  : Number of virtual nodes
+				 *   ...
+				 */
+
+				//  giải thích: strategy của LoadBalancer GLOBAL là RoundRobin -> nhưng vẫn có thể overrite trong từng action/service
+				shardKey: "name" //có thể lấy qua params
 			},
 			/**
 			 * @param {Context} ctx

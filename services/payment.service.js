@@ -1,7 +1,9 @@
+let __awesome = require('../middlewares/awesome.middleware');
+
 module.exports = {
     name: 'payment',
-    // version: "stagging",
-    
+    version: "stagging", // not RUN
+
     events: {
         "order.created": {
             // register handler to the "other" group instead of "payment" group

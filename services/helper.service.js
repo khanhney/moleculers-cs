@@ -69,11 +69,24 @@ module.exports ={
             }
         },
 
-        callTestBalancedEvent: {
+        balancedEvent: {
             handler(ctx) {
-                ctx.emit('order.created', { message: 'hello_world' })
+                return ctx.emit('order.created', { message: 'hello_world' }, ['payment'])
+            }
+        },
+
+        broadcastEvent: {
+            handler(ctx) {
+                // Send to all "payment" service instances
+                // ctx.broadcast('order.created', { message: 'hello_broadcast' }, 'payment');
+
+                // Send to all "payment" & "greeter" service instances.
+                ctx.broadcast('order.created', { message: 'hello_broadcast' }, ['payment', 'greeter']);
+                
+                return;
             }
         }
+        
     },
 
     // PRIVATIE function

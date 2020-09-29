@@ -88,7 +88,11 @@ module.exports = {
 	 * Events
 	 */
 	events: {
-
+		'order.created': {
+			handler(ctx) {
+				this.logger.info('--------GREETER SERVICES------')
+			}
+		}
 	},
 
 	/**

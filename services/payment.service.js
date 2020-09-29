@@ -1,11 +1,11 @@
 module.exports = {
     name: 'payment',
-    version: "stagging",
+    // version: "stagging",
     
     events: {
         "order.created": {
             // register handler to the "other" group instead of "payment" group
-            group: "other",
+            // group: "other",
             handler(ctx) {
                 this.logger.info("Payload:", ctx.params);
                 this.logger.info("Sender:", ctx.nodeID);

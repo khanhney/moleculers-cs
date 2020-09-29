@@ -67,7 +67,13 @@ module.exports = {
 
 	// Define a cacher.
 	// More info: https://moleculer.services/docs/0.14/caching.html
-	cacher: null,
+	cacher: {
+		type: "Memory",
+		options: {
+			maxParamsLength: 60,
+			ttl: 30 //30 seconds
+		}
+	},
 
 	// Define a serializer.
 	// Available values: "JSON", "Avro", "ProtoBuf", "MsgPack", "Notepack", "Thrift".

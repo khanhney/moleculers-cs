@@ -106,10 +106,13 @@ module.exports = {
 
 	// Tracking requests and waiting for running requests before shuting down. More info: https://moleculer.services/docs/0.14/context.html#Context-tracking
 	tracking: {
+		// graceful service shutdowns (shutdownTimeout | default: 5s)
+		// overrite $shutdownTimeout in setting object services
+
 		// Enable feature
-		enabled: false,
+		enabled: true,
 		// Number of milliseconds to wait before shuting down the process.
-		shutdownTimeout: 5000,
+		shutdownTimeout: 10 * 1000,
 	},
 
 	// Disable built-in request & emit balancer. (Transporter must support it, as well.). More info: https://moleculer.services/docs/0.14/networking.html#Disabled-balancer
